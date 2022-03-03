@@ -156,4 +156,12 @@ export function deepCompare(a: any, b: any): boolean {
   }
   return a === b;
 }
+
+// getPropertyName(person, o => o.address);
+export function getPropertyName<T>(obj: T, expression: (inst:T)=>any):string {
+  var res = Object();
+  Object.keys(obj).map(k => { res[k] = () => k; });
+  return expression(res)();
+}
+
 /*eslint-enable */
