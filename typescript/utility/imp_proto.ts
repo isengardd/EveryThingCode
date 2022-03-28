@@ -25,7 +25,14 @@ export class UserAuthority {
   public auth: UserProductAuthority[] = []; // 具体项目的权限
 
   public constructor(init?: Partial<UserAuthority>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
     this.auth = [];
     if (init?.auth) {
       init?.auth.forEach(value => {
@@ -44,7 +51,14 @@ export class LoginRequest {
   public password = "";
 
   public constructor(init?: Partial<LoginRequest>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
@@ -54,7 +68,14 @@ export class ToastConfig {
   public pos: number = ToastPosition.CenterTop;
 
   public constructor(init?: Partial<ToastConfig>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
@@ -66,7 +87,14 @@ export class AdConfig {
   public sort = 0;
 
   public constructor(init?: Partial<AdConfig>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
@@ -78,7 +106,14 @@ export class UserBasic {
   public desc = "";
 
   public constructor(init?: Partial<UserBasic>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
     if (init?.authority) {
       this.authority = new UserAuthority(init?.authority);
     }
@@ -92,7 +127,14 @@ export class Pagination {
   public totalPages = 1;
 
   public constructor(init?: Partial<Pagination>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
@@ -101,7 +143,14 @@ export class ConfigsPage {
   public pagination: Pagination = new Pagination();
 
   public constructor(init?: Partial<ConfigsPage>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
     if (init?.data) {
       this.data = [];
       init?.data.forEach(value => {
@@ -135,7 +184,14 @@ export class AdProduct {
   public fbAccessToken = "";
 
   public constructor(init?: Partial<AdProduct>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
@@ -144,7 +200,14 @@ export class ProductsPage {
   public pagination: Pagination = new Pagination();
 
   public constructor(init?: Partial<ProductsPage>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
     if (init?.data) {
       this.data = [];
       init?.data.forEach(value => {
@@ -177,7 +240,14 @@ export class AdServingConfig {
   public ageMin = "";
   public status = AdPublishStatus.AdStatusUnknown; // 投放状态
   public constructor(init?: Partial<AdServingConfig>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
@@ -186,7 +256,14 @@ export class AdServingConfigPage {
   public pagination: Pagination = new Pagination();
 
   public constructor(init?: Partial<ProductsPage>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
     if (init?.data) {
       this.data = [];
       let id = 1;
@@ -211,7 +288,14 @@ export class TaskInfo {
   public msg = "";
   public state = "";
   public constructor(init?: Partial<TaskInfo>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
@@ -220,14 +304,28 @@ export class AudienceInfo {
   public name = "";
   public country = "";
   public constructor(init?: Partial<AudienceInfo>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
 export class AudienceArray {
   public audiences: AudienceInfo[] = [];
   public constructor(init?: Partial<AudienceArray>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
     this.audiences = [];
     if (init?.audiences) {
       init?.audiences.forEach(value => {
@@ -243,14 +341,28 @@ export class BusinessUsage {
   public cpuTime = 0;
   public totalTime = 0;
   public constructor(init?: Partial<BusinessUsage>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
 export class AdActUsage {
   public accUtilPct = 0;
   public constructor(init?: Partial<AdActUsage>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }
 
@@ -269,7 +381,14 @@ export class FbApiUsage {
   public app: AppUsage = new AppUsage();
   public regainTime = 0; // 剩余解锁时间（秒）
   public constructor(init?: Partial<FbApiUsage>) {
-    Object.assign(this, init);
+    if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
     this.businessList = [];
     if (init?.businessList) {
       init?.businessList.forEach(value => {
@@ -294,6 +413,13 @@ export class UnpublishCountryInfo {
   public adContent = "";
   public adTitle = "";
   public constructor(init?: Partial<UnpublishCountryInfo>) {
-    Object.assign(this, init);
+        if (init === undefined) {
+      return;
+    }
+    Object.keys(init).forEach((key) => {
+      if (this.hasOwnProperty(key)) {
+        Object(this)[key] = Object(init)[key];
+      }
+    });
   }
 }

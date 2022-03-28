@@ -54,19 +54,16 @@ namespace FairyGUI
             return StageToLocal(screenPos, gObject);
         }
 
-        // FGUI的local坐标转stage坐标
+        // FGUI的local逻辑屏幕坐标转stage物理屏幕坐标
         public static Vector2 LocalToStage(GObject gObject, Vector2 offsetPos)
         {
-            Vector2 localPos = gObject.xy + offsetPos;
-            GObject parent = gObject.parent != null ? gObject.parent : gObject;
-            return parent.LocalToGlobal(localPos);
+            return gObject.LocalToGlobal(Vector2.zero + offsetPos);
         }
 
-        // FGUI的stage坐标转local坐标
+        // FGUI的stage物理屏幕坐标转local逻辑屏幕坐标
         public static Vector2 StageToLocal(Vector2 position, GObject gObject)
         {
-            GObject parent = gObject.parent != null ? gObject.parent : gObject;
-            return parent.GlobalToLocal(position);
+            return gObject.GlobalToLocal(position);
         }
     }
 }
