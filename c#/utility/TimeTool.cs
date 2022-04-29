@@ -147,6 +147,25 @@ public static class TimeTool
     }
 
     /// <summary>
+    /// 格式化日期, {d}对应天,{h}对应小时...
+    /// </summary>
+    /// <param name="second">秒</param>
+    /// <param name="formatter">格式化参数</param>
+    /// <returns></returns>
+    public static string FormatSecond(uint second, string formatter = "{d}d{h}h{m}m{s}s")
+    {
+        uint day = second / DAY_SECOND;
+        uint hour = (second % DAY_SECOND) / HOUR_SECOND;
+        uint min = (second % HOUR_SECOND) / MINUTE_SECOND;
+        uint sec = (second % MINUTE_SECOND);
+        formatter = formatter.Replace("{d}", string.Format("{0:D2}", day));
+        formatter = formatter.Replace("{h}", string.Format("{0:D2}", hour));
+        formatter = formatter.Replace("{m}", string.Format("{0:D2}", min));
+        formatter = formatter.Replace("{s}", string.Format("{0:D2}", sec));
+        return formatter;
+    }
+
+    /// <summary>
     /// 通过utc秒获得
     /// </summary>
     /// <param name="utcSeconds"></param>
@@ -206,6 +225,23 @@ public static class TimeTool
     }
 
     /// <summary>
+    /// 获取指定utc时间戳的本地时区当日0时时间戳
+    /// timestamp为0取当前时间戳
+    /// </summary>
+    /// <returns></returns>
+    public static uint GetDayBegin(uint timestamp)
+    {
+        DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)); // 当地时区
+        DateTime dateTime = 0 == timestamp ? DateTime.Now : GetDatetimeFromUtcsecond(timestamp);
+        dateTime = dateTime.AddHours(-dateTime.Hour);
+        dateTime = dateTime.AddMinutes(-dateTime.Minute);
+        dateTime = dateTime.AddSeconds(-dateTime.Second);
+        dateTime = dateTime.AddMilliseconds(-dateTime.Millisecond);
+        double timeStamp = (dateTime - startTime).TotalSeconds;         // 相差秒数
+        return (uint)timeStamp;
+    }
+
+    /// <summary>
     /// 是否是同一天
     /// </summary>
     /// <param name="dt1"></param>
@@ -241,6 +277,17 @@ public static class TimeTool
         if (daySpan >= intDayOfWeek)
             return false;
         return true;
+    }
+
+    /// <summary>
+    /// 是否是同一个月
+    /// </summary>
+    /// <param name="dt1"></param>
+    /// <param name="dt2"></param>
+    /// <returns></returns>
+    public static bool IsSameMonth(DateTime dt1, DateTime dt2)
+    {
+        return dt1.Year == dt2.Year && dt1.Month == dt2.Month;
     }
 
     /// <summary>
