@@ -30,6 +30,7 @@ def remove_bom(filepath, filetype):
                     chunk = fp.read(BUFSIZE)
                 fp.seek(-BOMLEN, os.SEEK_CUR)
                 fp.truncate()
+                fp.flush()
                 print('utf8 BOM Removed: ' + filepath)
             #else:
             #    print(filepath + " file_encoding is utf8 without BOM.")

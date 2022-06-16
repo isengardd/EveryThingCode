@@ -34,7 +34,7 @@ public static class Extensions
 
     public static void Shuffle<T>(this IList<T> list)
     {
-        System.Random random = new System.Random();
+        System.Random random = new System.Random(Guid.NewGuid().GetHashCode());
         for (int i = 0; i < list.Count - 1; i++)
         {
             int swapIndex = random.Next(i, list.Count);
